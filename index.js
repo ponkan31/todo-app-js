@@ -5,7 +5,19 @@ const onClickAdd = () => {
     // 入力したものが残り続けると邪魔なので空文字にする
     document.getElementById("add-text").value = ""
 
+    createIncompleteList(inputText);
 
+    
+  };
+  
+// 未完了TODOから指定の要素を削除する関数
+const deleteFromIncompleteList = (target) => {
+    document.getElementById("incomplete-list").removeChild(target);
+}
+
+
+// 未完了リストに追加する関数
+const createIncompleteList = (text) => {
     // liを生成
     const li = document.createElement("li");
     // クラス名を付与
@@ -14,7 +26,7 @@ const onClickAdd = () => {
     // ｐタグ生成
     const p = document.createElement("p");
     // pタグの中身は取得したinputText
-    p.innerText = inputText;
+    p.innerText = text;
 
 // 完了button生成
     const completeButton = document.createElement("button");
@@ -41,6 +53,21 @@ const onClickAdd = () => {
         // 戻すボタン作成
         const backButton = document.createElement("button");
         backButton.innerText = "戻す";
+        backButton.addEventListener("click", () => {
+            // クリックされた戻すボタンの親タグを完了リストから削除
+            const deleteTarget = backButton.parentNode;
+            document.getElementById("complete-list").removeChild(deleteTarget);
+
+            // 未完了に追加する要素取得
+            const text = backButton.parentNode.firstChild.innerText;
+            // 未完了に追加する関数実行
+            createIncompleteList(text);
+
+
+
+        })
+
+
 
         // liタグの子要素にp,buttonタグ生成
         li.appendChild(p);
@@ -67,13 +94,7 @@ const onClickAdd = () => {
 
     // 未完了リストに追加
     document.getElementById("incomplete-list").appendChild(li);
-  };
-  
-// 未完了TODOから指定の要素を削除する関数
-const deleteFromIncompleteList = (target) => {
-    document.getElementById("incomplete-list").removeChild(target);
 }
-
 
 //テキスト入力し追加ボタンをクリックするとonClickAdd()が発動
   document
