@@ -29,7 +29,11 @@ const onClickAdd = () => {
     deleteButton.innerText = "削除";
         // 削除ボタンをクリックしたときにイベント発生
     deleteButton.addEventListener("click", () => {
-        alert("削除");
+        // 押された削除ボタンの親要素参照
+        const deleteTarget = deleteButton.parentNode;
+        // 取得してきた親要素incomplete-listから子要素のdeleteTargetを削除
+        document.getElementById("incomplete-list").removeChild(deleteTarget);
+
     });
     
     // liタグの子要素にp,buttonタグ生成
