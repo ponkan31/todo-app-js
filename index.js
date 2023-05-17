@@ -6,7 +6,7 @@ const onClickAdd = () => {
     document.getElementById("add-text").value = ""
 
 
-    // divを生成
+    // liを生成
     const li = document.createElement("li");
     // クラス名を付与
     li.className = "list-row" ;
@@ -15,13 +15,34 @@ const onClickAdd = () => {
     const p = document.createElement("p");
     // pタグの中身は取得したinputText
     p.innerText = inputText;
+
+    // 完了button生成
+    const cumpleteButton = document.createElement("button");
+    cumpleteButton.innerText = "完了";
+        // 完了ボタンをクリックしたときにイベント発生
+    cumpleteButton.addEventListener("click", () => {
+        alert("ああ");
+    });
     
-    // divタグの子要素にｐタグ生成
+    // 削除button生成
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "削除";
+        // 削除ボタンをクリックしたときにイベント発生
+    deleteButton.addEventListener("click", () => {
+        alert("削除");
+    });
+    
+    // liタグの子要素にp,buttonタグ生成
     li.appendChild(p);
+    li.appendChild(cumpleteButton);
+    li.appendChild(deleteButton);
+
+
     // 未完了リストに追加
     document.getElementById("incomplete-list").appendChild(li);
   };
   
+//テキスト入力し追加ボタンをクリックするとonClickAdd()が発動
   document
     .getElementById("add-button")
     .addEventListener("click", () => onClickAdd());
